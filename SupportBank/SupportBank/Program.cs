@@ -27,14 +27,18 @@ namespace SupportBank
             var transactionList = new Transaction[Lines.Length];
 
             var transaction = new Transaction();
-            transaction.narrative = "hello";
-            transaction.amount = "700";
+
             transaction.Date = "14/2/15";
             transaction.From = "Jon";
             transaction.To = "Amy";
+            transaction.Narrative = "hello";
+            transaction.Amount = "700";
 
             transactionList[0] = transaction;
 
+
+
+            
             // Allocate the data array.
             string[,] values = new string[num_rows, num_cols];
 
@@ -69,12 +73,12 @@ namespace SupportBank
             public string Date;
             public string From;
             public string To;
-            public string narrative;
-            public string amount;
+            public string Narrative;
+            public string Amount;
 
             public string Describe()
             {
-                return $"A transaction from {From} to {To} for {amount}";
+                return $"A transaction from {From} to {To} for {Amount}";
             }
         }
 

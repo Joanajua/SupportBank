@@ -16,73 +16,73 @@ namespace SupportBank
            
             string [] Lines = File.ReadAllLines(@"../../../Transactions2014.csv");
 
-            // Split into lines.
-            //readCsv = readCsv.Remove('\n');
-            //string[] lines = readCsv.Split(new char[] { '\n' });
+            int totalTransactions = Lines.Length;
 
-            // See how many rows and columns there are.
-            int num_rows = Lines.Length;
-            int num_cols = Lines[0].Split(',').Length;
+            List<Transaction> transactionList = new List<Transaction>();
+            //List<Employee> employeeList = new List<Employee>();
 
-            var transactionList = new Transaction[Lines.Length];
+            for (int i = 1; i < totalTransactions; i++)
+            {
+                var transaction = Lines[i];
+                string[] words = Lines[i].Split(',');
 
-            var transaction = new Transaction();
-
-            transaction.Date = "14/2/15";
-            transaction.From = "Jon";
-            transaction.To = "Amy";
-            transaction.Narrative = "hello";
-            transaction.Amount = "700";
-
-            transactionList[0] = transaction;
-
-
+                Transaction newTransaction = new Transaction();
+                newTransaction.NameFrom = words[1];
+                newTransaction.NameTo = words[2];
+                newTransaction.Balance = words[4];
 
             
-            // Allocate the data array.
-            string[,] values = new string[num_rows, num_cols];
+                Console.WriteLine($" {newTransaction.NameFrom} owes {newTransaction.NameTo}, {newTransaction.Balance}");
 
-            // Load the array.
-            for (int r = 0; r < num_rows; r++)
-            {
+                transactionList.Add(newTransaction);
 
-                string[] line_r = Lines[r].Split(',');
-                for (int c = 0; c < num_cols; c++)
-                {
-                    values[r, c] = line_r[c]; //class
-                }
+
+                //Console.WriteLine(words[4]);
             }
 
 
 
-            for (int i = 0; i < Lines.Length; i++)
+            // Print all transactions
+            foreach (Transaction transaction in transactionList)
             {
-                if (transactionList[i] != null)
-                {
-                    Console.WriteLine(transactionList[i].Describe());
-                } 
+                Console.WriteLine($"Transaction from {transaction.NameFrom} to {transaction.NameTo} for amount {transaction.Balance}");
             }
 
-            // Return the values.
-            //Console.Write (values.ToString());
+            // Print all employees
+            //foreach (Employee employee in employeeList)
+            //{
+            //    Console.WriteLine($"Employee {employee.Name} has balance {employee.Balance}");
+            //}
+
+
+
+
+            /* var transactionList = new Transaction[Lines.Length];
+
+             var transaction = new Transaction();
+
+             transaction.Date = "14/2/15";
+             transaction.From = "Jon";
+             transaction.To = "Amy";
+             transaction.Narrative = "hello";
+             transaction.Amount = "700";
+
+             transactionList[0] = transaction;*/
+
+
+            // create a new transaction
+            // assign the date variable
+
+
             Console.ReadLine();
         }
 
-        class Transaction
-        {
-            public string Date;
-            public string From;
-            public string To;
-            public string Narrative;
-            public string Amount;
+       // 1 Take names from file (cols From and To) and create an Array (or Object) of each one.
+       // 2 Give every of the Arrays (objects) an initial value (ex. 500) inside a variable called totalAmount.
+       // 3 When name is in the From column means owes money --- totalAmount - amountColumn and we put back this into the variable totalAmount
+       // 4 when name is in the To column totalAmount + amountColumn and put back the value into var totalAmount
 
-            public string Describe()
-            {
-                return $"A transaction from {From} to {To} for {Amount}";
-            }
-        }
 
-       
 
 
     }

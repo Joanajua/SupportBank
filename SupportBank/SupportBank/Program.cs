@@ -19,11 +19,12 @@ namespace SupportBank
             int totalTransactions = Lines.Length;
 
             List<Transaction> transactionList = new List<Transaction>();
-            //List<Employee> employeeList = new List<Employee>();
+            List<string> employeeList = new List<string>();
 
+            
             for (int i = 1; i < totalTransactions; i++)
             {
-                var transaction = Lines[i];
+                //var transaction = Lines[i];
                 string[] words = Lines[i].Split(',');
 
                 Transaction newTransaction = new Transaction();
@@ -31,50 +32,54 @@ namespace SupportBank
                 newTransaction.NameTo = words[2];
                 newTransaction.Balance = words[4];
 
-            
-                Console.WriteLine($" {newTransaction.NameFrom} owes {newTransaction.NameTo}, {newTransaction.Balance}");
+                ///we can put this into a variable and print that var
+                //Console.WriteLine($" {newTransaction.NameFrom} owes {newTransaction.NameTo}, {newTransaction.Balance}");
 
                 transactionList.Add(newTransaction);
 
 
-                //Console.WriteLine(words[4]);
+                //gets values for employeeList from the instance newTransaction
+
+                employeeList.Add(newTransaction.NameFrom);
+                employeeList.Add(newTransaction.NameTo);
+
+                //if (!employeeList.Contains(newTransaction.NameFrom)) {
+                    
+                //}
+
+                foreach (string name in employeeList)
+                {
+                    if (name != newTransaction.NameFrom && name != newTransaction.NameTo)
+                    { 
+                        employeeList.Add(name);
+                    }
+                  
+                    Console.WriteLine($" {newTransaction.NameFrom} {Environment.NewLine} {newTransaction.NameTo}");
+
+                }
+                
+
+
+                ///we can put this into a variable and print that var
+                
+
+                //foreach (string name in employeeList)
+                //{
+                //    if (newTransaction.NameFrom == employeeList[])
+                //    {
+                //        employeeList.Add(newTransaction.NameFrom);
+                //    }
+
+                //}
+
+                //     StringComparison(newTransaction.NameFrom, newTransaction.NameTo);
+
+
+
             }
-
-
-
-            // Print all transactions
-            foreach (Transaction transaction in transactionList)
-            {
-                Console.WriteLine($"Transaction from {transaction.NameFrom} to {transaction.NameTo} for amount {transaction.Balance}");
-            }
-
-            // Print all employees
-            //foreach (Employee employee in employeeList)
-            //{
-            //    Console.WriteLine($"Employee {employee.Name} has balance {employee.Balance}");
-            //}
-
-
-
-
-            /* var transactionList = new Transaction[Lines.Length];
-
-             var transaction = new Transaction();
-
-             transaction.Date = "14/2/15";
-             transaction.From = "Jon";
-             transaction.To = "Amy";
-             transaction.Narrative = "hello";
-             transaction.Amount = "700";
-
-             transactionList[0] = transaction;*/
-
-
-            // create a new transaction
-            // assign the date variable
-
 
             Console.ReadLine();
+
         }
 
        // 1 Take names from file (cols From and To) and create an Array (or Object) of each one.

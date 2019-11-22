@@ -40,28 +40,46 @@ namespace SupportBank
 
                 //gets values for employeeList from the instance newTransaction
 
-                employeeList.Add(newTransaction.NameFrom);
-                employeeList.Add(newTransaction.NameTo);
-
+            
                 //if (!employeeList.Contains(newTransaction.NameFrom)) {
-                    
+
                 //}
 
-                foreach (string name in employeeList)
+                if (!employeeList.Contains(newTransaction.NameFrom))
                 {
-                    if (name != newTransaction.NameFrom && name != newTransaction.NameTo)
-                    { 
-                        employeeList.Add(name);
-                    }
-                  
-                    Console.WriteLine($" {newTransaction.NameFrom} {Environment.NewLine} {newTransaction.NameTo}");
-
+                    employeeList.Add(newTransaction.NameFrom);
                 }
+
+                //else if (!employeeList.Contains(newTransaction.NameTo))
+                //{
+                //    employeeList.Add(newTransaction.NameTo);
+                //}
                 
+                //else
+                //{
+                //    employeeList.Remove(newTransaction.NameFrom);
+                //    employeeList.Remove(newTransaction.NameTo);
+                //}
+
+               
+
+
+               
+                ////  foreach (string name in employeeList)
+                //  {
+                //      if (name != newTransaction.NameFrom && name != newTransaction.NameTo)
+                //      { 
+                //          employeeList.Add(name);
+                //      }
+
+                //      Console.WriteLine($" {newTransaction.NameFrom} {Environment.NewLine} {newTransaction.NameTo}");
+
+                //  //}
+
 
 
                 ///we can put this into a variable and print that var
-                
+
 
                 //foreach (string name in employeeList)
                 //{
@@ -76,6 +94,11 @@ namespace SupportBank
 
 
 
+            }
+
+            foreach (string name in employeeList)
+            {
+                Console.WriteLine(name);
             }
 
             Console.ReadLine();

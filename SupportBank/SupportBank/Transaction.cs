@@ -12,7 +12,12 @@ namespace SupportBank
 
         public string NameTo { get; set; }
 
-        public string Balance { get; set; }
+        public string Amount { get; set; }
+
+        public string Date { get; set; }
+
+        public string Narrative { get; set; }
+
 
         /*public string Describe()
         {

@@ -13,90 +13,82 @@ namespace SupportBank
         static void Main(string[] args)
         {
             // Get the file's text.
-           
-            string [] Lines = File.ReadAllLines(@"../../../Transactions2014.csv");
+
+            string[] Lines = File.ReadAllLines(@"../../../Transactions2014.csv");
 
             int totalTransactions = Lines.Length;
 
             List<Transaction> transactionList = new List<Transaction>();
-            List<string> employeeList = new List<string>();
+            List<string> employeeNamesList = new List<string>();
+            List<Accounts> accountsList = new List<Accounts>();
 
-            
+            Console.WriteLine("LIST OF TRANSACTIONS \n");
+
             for (int i = 1; i < totalTransactions; i++)
             {
-                //var transaction = Lines[i];
-                string[] words = Lines[i].Split(',');
+
+                string[] column = Lines[i].Split(',');
 
                 Transaction newTransaction = new Transaction();
-                newTransaction.NameFrom = words[1];
-                newTransaction.NameTo = words[2];
-                newTransaction.Balance = words[4];
+                newTransaction.NameFrom = column[1];
+                newTransaction.NameTo = column[2];
+                newTransaction.Amount = column[4];
 
-                
-                Console.WriteLine($" {newTransaction.NameFrom} owes {newTransaction.NameTo}, {newTransaction.Balance}");
+
+                Console.WriteLine($" {newTransaction.NameFrom} owes {newTransaction.NameTo}, {newTransaction.Amount}");
 
                 transactionList.Add(newTransaction);
 
 
-                //gets values for employeeList from the instance newTransaction
+                //Compares if the names from newTransaction.NameFrom are already in the employeeNamesList, and if they are not
+                //it adds them to the employeeNamesList
 
-            
-                //if (!employeeList.Contains(newTransaction.NameFrom)) {
 
-                //}
-
-                if (!employeeList.Contains(newTransaction.NameFrom))
+                if (!employeeNamesList.Contains(newTransaction.NameFrom))
                 {
-                    employeeList.Add(newTransaction.NameFrom);
+                    employeeNamesList.Add(newTransaction.NameFrom);
                 }
-
-                //else if (!employeeList.Contains(newTransaction.NameTo))
-                //{
-                //    employeeList.Add(newTransaction.NameTo);
-                //}
-                
-                //else
-                //{
-                //    employeeList.Remove(newTransaction.NameFrom);
-                //    employeeList.Remove(newTransaction.NameTo);
-                //}
-
-               
-
-
-               
-                ////  foreach (string name in employeeList)
-                //  {
-                //      if (name != newTransaction.NameFrom && name != newTransaction.NameTo)
-                //      { 
-                //          employeeList.Add(name);
-                //      }
-
-                //      Console.WriteLine($" {newTransaction.NameFrom} {Environment.NewLine} {newTransaction.NameTo}");
-
-                //  //}
-
-
-
-                ///we can put this into a variable and print that var
-
-
-                //foreach (string name in employeeList)
-                //{
-                //    if (newTransaction.NameFrom == employeeList[])
-                //    {
-                //        employeeList.Add(newTransaction.NameFrom);
-                //    }
-
-                //}
-
-                //     StringComparison(newTransaction.NameFrom, newTransaction.NameTo);
-
-
-
             }
 
-            foreach (string name in employeeList)
+            
+
+            //We are taking every name from employeeNamesList and comparing it to the names inside the transactionList
+
+            for (int i = 0; i < employeeNamesList.Count; i++)
+            {
+                Accounts newAccounts = new Accounts();
+                newAccounts.EmployeeName = employeeNamesList[0];
+                newAccounts.Balance = 0;
+
+                for (int r = 0; r < transactionList.Count; r++)
+                {
+                    decimal amountDecimal = decimal.Parse(transactionList[r].Amount);
+                    if (transactionList[r].NameFrom == employeeNamesList[i])
+                    {
+                        newAccounts.Balance -= amountDecimal;
+                    }
+                    else if (transactionList[r].NameTo == employeeNamesList[i])
+                    {
+                        newAccounts.Balance += amountDecimal;
+                    }
+                }
+                
+            }
+            Console.WriteLine("\nEMPLOYEES\' BALANCE \n");
+
+
+            foreach (Accounts account in accountsList)
+            {
+               
+                Console.WriteLine(account.EmployeeName + " " + account.Balance);
+            }
+
+            
+
+            Console.WriteLine("\n LIST OF NAMES \n");
+
+            //Prints the names inside employeeNamesLists
+            foreach (string name in employeeNamesList)
             {
                 Console.WriteLine(name);
             }
@@ -104,13 +96,6 @@ namespace SupportBank
             Console.ReadLine();
 
         }
-
-       // 1 Take names from file (cols From and To) and create an Array (or Object) of each one.
-       // 2 Give every of the Arrays (objects) an initial value (ex. 500) inside a variable called totalAmount.
-       // 3 When name is in the From column means owes money --- totalAmount - amountColumn and we put back this into the variable totalAmount
-       // 4 when name is in the To column totalAmount + amountColumn and put back the value into var totalAmount
-
-
 
 
     }

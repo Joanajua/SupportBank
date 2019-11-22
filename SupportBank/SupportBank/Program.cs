@@ -32,8 +32,8 @@ namespace SupportBank
                 newTransaction.NameTo = words[2];
                 newTransaction.Balance = words[4];
 
-                ///we can put this into a variable and print that var
-                //Console.WriteLine($" {newTransaction.NameFrom} owes {newTransaction.NameTo}, {newTransaction.Balance}");
+                
+                Console.WriteLine($" {newTransaction.NameFrom} owes {newTransaction.NameTo}, {newTransaction.Balance}");
 
                 transactionList.Add(newTransaction);
 

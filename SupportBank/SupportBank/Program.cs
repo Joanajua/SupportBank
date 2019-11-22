@@ -56,13 +56,16 @@ namespace SupportBank
 
             for (int i = 0; i < employeeNamesList.Count; i++)
             {
+
+                //Creates an account for every different name on employeeNamesList
+
                 Accounts newAccounts = new Accounts();
                 newAccounts.EmployeeName = employeeNamesList[0];
                 newAccounts.Balance = 0;
 
                 for (int r = 0; r < transactionList.Count; r++)
                 {
-                    decimal amountDecimal = decimal.Parse(transactionList[r].Amount);
+                    decimal amountDecimal = decimal.Parse(transactionList[r].Amount); //Transforms Amount from a string into a Decimal
                     if (transactionList[r].NameFrom == employeeNamesList[i])
                     {
                         newAccounts.Balance -= amountDecimal;
